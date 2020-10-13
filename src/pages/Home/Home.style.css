@@ -1,0 +1,44 @@
+.home__banner {
+  background: #fbd062;
+  min-height: 95vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+}
+
+.category__card {
+  color: #fff;
+  border-radius: 1rem;
+}
+
+.companies img {
+  height: 50%;
+  width: 50%;
+}
+
+.home__service {
+  text-align: center;
+  color: #000;
+}
+
+.home__service:hover {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 3px 15px gray;
+  transition: all 0.3s ease-in-out;
+}
+
+.home__service img {
+  height: 70px;
+  width: 70px;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.home__works {
+  background: #111430;
+}
+
+.footer {
+  background-color: #fbd062;
+}

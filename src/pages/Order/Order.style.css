@@ -1,0 +1,16 @@
+.addOrder__form {
+  width: 50%;
+  margin-top: 50px;
+  margin-left: 1rem;
+}
+
+.addOrder__form input,
+textarea {
+  margin: 1rem 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .addOrder__form {
+    min-width: 80%;
+  }
+}

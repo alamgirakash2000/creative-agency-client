@@ -1,0 +1,16 @@
+.customer__sidebar {
+  padding: 4rem 2rem;
+}
+
+.customer__sidebar ul {
+  list-style: none;
+}
+
+.customer__right {
+  min-height: 90vh;
+  background: #ebf9ea;
+}
+
+.customer__navlinkSelected {
+  color: forestgreen;
+}

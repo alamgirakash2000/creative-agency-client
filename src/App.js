@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Header from "./components/Header/Header";
+import PrivateRoute from "./components/PrivateRoute";
+import Customer from "./pages/Customer/Customer";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("volunteer-network-user")) || {});
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Header user={user} setUser={setUser} />
+          <Home />
+        </Route>
+        <PrivateRoute user={user} path="/customer/:pagename">
+          <Customer user={user} />
+        </PrivateRoute>
+        <Route path="/login">
+          <Login user={user} setUser={setUser} />
+        </Route>
+        <PrivateRoute user={user} path="/admin/:pagename">
+          <Admin user={user} />
+        </PrivateRoute>
+      </Switch>
+    </Router>
   );
 }
 
