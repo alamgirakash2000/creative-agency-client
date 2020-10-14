@@ -29,7 +29,5 @@ a:hover {
 }
 
 .selected {
-  background: rgb(11, 179, 170);
-  color: #fff;
-  border-radius: 0 20px 0 20px;
+  border-bottom: 2px solid #00aa00;
 }

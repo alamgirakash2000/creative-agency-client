@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import Customer from "./pages/Customer/Customer";
 import Admin from "./pages/Admin/Admin";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 function App() {
   const [user, setUser] = useState({});
@@ -31,6 +32,9 @@ function App() {
         <PrivateRoute user={user} path="/admin/:pagename">
           <Admin user={user} />
         </PrivateRoute>
+        <Route>
+          <ErrorPage />
+        </Route>
       </Switch>
     </Router>
   );

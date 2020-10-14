@@ -102,6 +102,7 @@ function Home() {
           <h3 className="text-light text-center">
             Here are some of <span className="text-success">our works</span>
           </h3>
+          text
           <WorksCarousel />
         </div>
       </div>
