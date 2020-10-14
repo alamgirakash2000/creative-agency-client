@@ -9,19 +9,25 @@ import logo2 from "../../images/logos/google.png";
 import logo3 from "../../images/logos/netflix.png";
 import logo4 from "../../images/logos/uber.png";
 import logo5 from "../../images/logos/airbnb.png";
-import service1 from "../../images/icons/service1.png";
-import service2 from "../../images/icons/service2.png";
-import service3 from "../../images/icons/service3.png";
 import WorksCarousel from "../../components/WorksCarousel/WorksCarousel";
+import { Avatar } from "@material-ui/core";
 
 function Home() {
-  const [categories, setCategories] = useState([]);
+  const [services, setService] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     axios
-      .get("/api/categories/all")
+      .get("/api/reviews")
       .then((response) => {
-        setCategories(response.data);
+        setReviews(response.data);
+      })
+      .catch((error) => alert(error.message));
+
+    axios
+      .get("/api/services")
+      .then((response) => {
+        setService(response.data);
       })
       .catch((error) => alert(error.message));
   }, []);
@@ -76,16 +82,13 @@ function Home() {
           Provide awesome <span className="text-success">service</span>
         </h3>
         <div className="row my-4">
-          {categories.slice(0, 3).map((category, index) => (
-            <div className="col-lg-4 col-md-6 my-3" key={category._id}>
-              <Link to={`/customer/order?${category._id}`}>
-                <div className="home__service p-3">
-                  <img src={category.img} alt="" />
-                  <h5 className="py-2">{category.name}</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur amet consectetur
-                    adipisicing elit. Enim, sunt?
-                  </p>
+          {services.map((service) => (
+            <div className="col-lg-4 col-md-6 my-3" key={service._id}>
+              <Link to={`/customer/order?${service._id}`}>
+                <div className="home__service p-3 h-100">
+                  <img src={service.image} alt="" />
+                  <h5 className="py-2">{service.title}</h5>
+                  <p>{service.description}</p>
                 </div>
               </Link>
             </div>
@@ -108,7 +111,24 @@ function Home() {
         <h3 className="text-center">
           Clients <span className="text-success">Feedback</span>
         </h3>
-        <div className="row"></div>
+        <div className="row my-4">
+          {reviews.slice(0, 6).map((review) => (
+            <div key={review._id} className="col-lg-4 col-md-6 my-3">
+              <div className="p-3 home__review">
+                <div className="home__reviewHeader d-flex pb-3">
+                  <Avatar alt={review.username} src={review.image} />
+                  <div className="ml-3">
+                    <h5 className="m-0">{review.username}</h5>
+                    <p>
+                      <strong>{review.company}</strong>
+                    </p>
+                  </div>
+                </div>
+                <p>{review.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/*Footer*/}

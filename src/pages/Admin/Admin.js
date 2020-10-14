@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../images/logos/logo.png";
-import { useParams, NavLink, Link } from "react-router-dom";
+import { useParams, NavLink, Link, useHistory } from "react-router-dom";
 import AddService from "../AddService/AddService";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
 import AdminServiceList from "../AdminServiceList/AdminServiceList";
 import { Avatar } from "@material-ui/core";
+import Axios from "../../axios";
 
 function Admin({ user }) {
   const pagename = useParams().pagename;
+  const history = useHistory();
+
+  useEffect(() => {
+    Axios.get(`/api/admins/${user.email}`)
+      .then((response) => {
+        if (response.data.length < 1) {
+          history.push("/login");
+        }
+      })
+      .catch((err) => alert(err.message));
+  }, []);
+
   return (
     <div className="admin">
       <div className="header py-4">
@@ -34,7 +47,7 @@ function Admin({ user }) {
                   }`}
                   to="/admin/servicelist"
                 >
-                  <i class="fas fa-suitcase-rolling"></i> Service List
+                  <i className="fas fa-suitcase-rolling"></i> Service List
                 </NavLink>
               </li>
               <li className="my-3">
@@ -44,7 +57,7 @@ function Admin({ user }) {
                   }`}
                   to="/admin/addservice"
                 >
-                  <i class="fas fa-plus"></i> Add service
+                  <i className="fas fa-plus"></i> Add service
                 </NavLink>
               </li>
               <li className="my-3">

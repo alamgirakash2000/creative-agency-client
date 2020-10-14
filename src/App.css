@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+p,
+small {
+  margin: 0;
+  padding: 0;
+}
+
 a:hover {
   text-decoration: none;
 }

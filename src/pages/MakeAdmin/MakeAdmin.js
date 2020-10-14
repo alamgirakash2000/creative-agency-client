@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import Axios from "../../axios";
 
-function MakeAdmin() {
+function MakeAdmin({ user }) {
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
+
+    Axios.post(`/api/admins/${user.email}`, { email })
+      .then((response) => {
+        alert(response.data);
+      })
+      .catch((error) => alert(error.message));
   };
 
   return (

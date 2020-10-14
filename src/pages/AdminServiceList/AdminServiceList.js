@@ -10,7 +10,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 import axios from "../../axios";
-import moment from "moment";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -35,26 +34,29 @@ const useStyles = makeStyles({
   },
 });
 
-function AdminServiceList() {
+function AdminServiceList({ user }) {
   const classes = useStyles();
-
-  const [works, setWorks] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`/api/volunteers/all`)
-      .then((res) => setWorks(res.data))
-      .catch((err) => alert(err.message));
+      .get(`/api/orders/`)
+      .then((response) => {
+        setOrders(response.data);
+      })
+      .catch((error) => alert(error.message));
   }, []);
 
-  const removeVolunteer = (id) => {
+  const handleChange = (id, value) => {
+    console.log(id, value);
+
     axios
-      .delete(`/api/volunteers/${id}`)
-      .then((res) => {
-        alert(res.data);
+      .patch(`/api/orders/update?id=${id}`, { status: value })
+      .then((response) => {
+        alert(response.data);
         window.location.reload(false);
       })
-      .catch((err) => alert(err.message));
+      .catch((error) => alert(error.message));
   };
 
   return (
@@ -70,23 +72,34 @@ function AdminServiceList() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {works.map((work) => (
-            <StyledTableRow key={work._id}>
+          {orders.map((order) => (
+            <StyledTableRow key={order._id}>
               <StyledTableCell component="th" scope="row">
-                {work.username}
+                {order.username}
               </StyledTableCell>
-              <StyledTableCell align="left">{work.email}</StyledTableCell>
+              <StyledTableCell align="left">{order.email}</StyledTableCell>
               <StyledTableCell align="left">
-                {moment(work.date).format("L")}
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                {work.category.name}
+                {order.service.title}
               </StyledTableCell>
               <StyledTableCell align="left">
-                <i
-                  className="fas fa-trash-alt text-danger"
-                  onClick={() => removeVolunteer(work._id)}
-                ></i>
+                {order.description}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <select
+                  value={order.status}
+                  onChange={(e) => handleChange(order._id, e.target.value)}
+                  className={`admin__status ${order.status}`}
+                >
+                  <option value="pending" className="pending">
+                    Pending
+                  </option>
+                  <option value="ongoing" className="ongoing">
+                    Ongoing
+                  </option>
+                  <option value="done" className="done">
+                    Done
+                  </option>
+                </select>
               </StyledTableCell>
             </StyledTableRow>
           ))}

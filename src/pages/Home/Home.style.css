@@ -39,6 +39,12 @@
   background: #111430;
 }
 
+.home__review {
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: 100%;
+}
+
 .footer {
   background-color: #fbd062;
 }

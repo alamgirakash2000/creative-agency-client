@@ -37,9 +37,9 @@ function AddService() {
         uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
           console.log("File available at", downloadURL);
           axios
-            .post("/api/categories/", {
+            .post("/api/services/", {
               title: title,
-              img: downloadURL,
+              image: downloadURL,
               description,
             })
             .then((response) => {

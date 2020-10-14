@@ -1,5 +1,5 @@
 .addOrder__form {
-  width: 50%;
+  width: 70%;
   margin-top: 50px;
   margin-left: 1rem;
 }
@@ -7,6 +7,16 @@
 .addOrder__form input,
 textarea {
   margin: 1rem 0.5rem;
+}
+
+.uploadProject {
+  color: #009444;
+  border: 1px solid #009444;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 0.8rem;
+  background: #00944527;
 }
 
 @media (max-width: 768px) {

@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Review.style.css";
+import Axios from "../../axios";
+import { useHistory } from "react-router-dom";
 
 function Review({ user }) {
   const [companyName, setCompanyName] = useState("");
   const [description, setDescription] = useState("");
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let order = {
+    let review = {
       username: user.name,
+      image: user.image,
       company: companyName,
       description: description,
     };
-    console.log(order);
+
+    await Axios.post("/api/reviews/", review)
+      .then((response) => {
+        alert(response.data);
+        history.push("/");
+        window.location.reload(false);
+      })
+      .catch((error) => alert(error.message));
   };
 
   return (
