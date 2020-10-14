@@ -50,7 +50,7 @@ function Login({ user, setUser }) {
             if (response.data.length === 1) {
               history.push("/admin/servicelist");
             } else {
-              history.replace(from);
+              history.replace("/customer/order");
             }
           })
           .catch((err) => alert(err.message));
