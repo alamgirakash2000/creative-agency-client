@@ -18,7 +18,12 @@ function Order({ user }) {
   useEffect(() => {
     Axios.get(`/api/services/${serviceId}`)
       .then((response) => {
-        let { title, description, image } = response.data;
+        let data = response.data;
+        if (response.data.length >= 1) {
+          data = response.data[0];
+        }
+
+        let { title, description, image } = data;
         setService({ title, description, image });
       })
       .catch((err) => alert(err.message));
@@ -114,7 +119,7 @@ function Order({ user }) {
         </div>
         <div className="col-6">
           <label htmlFor="coverImg" className="uploadProject">
-            <i class="fas fa-cloud-upload-alt"></i> Upload project file
+            <i className="fas fa-cloud-upload-alt"></i> Upload project file
           </label>
           <input
             type="file"

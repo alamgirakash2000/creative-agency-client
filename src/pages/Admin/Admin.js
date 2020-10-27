@@ -43,7 +43,7 @@ function Admin({ user }) {
               <li className="my-3">
                 <NavLink
                   className={` my-3 ${
-                    pagename === "servicelist" ? "text-success" : "text-dark"
+                    pagename === "servicelist" ? "text-success" : "text-light"
                   }`}
                   to="/admin/servicelist"
                 >
@@ -53,7 +53,7 @@ function Admin({ user }) {
               <li className="my-3">
                 <NavLink
                   className={` my-3 ${
-                    pagename === "addservice" ? "text-success" : "text-dark"
+                    pagename === "addservice" ? "text-success" : "text-light"
                   }`}
                   to="/admin/addservice"
                 >
@@ -63,7 +63,7 @@ function Admin({ user }) {
               <li className="my-3">
                 <NavLink
                   className={` my-3 ${
-                    pagename === "makeadmin" ? "text-success" : "text-dark"
+                    pagename === "makeadmin" ? "text-success" : "text-light"
                   } `}
                   to="/admin/makeadmin"
                 >

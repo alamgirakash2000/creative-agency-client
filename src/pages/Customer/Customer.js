@@ -31,7 +31,7 @@ function Customer({ user }) {
               <li className="my-2">
                 <NavLink
                   className={` ${
-                    pagename === "order" ? "text-success" : "text-dark"
+                    pagename === "order" ? "text-success" : "text-light"
                   }`}
                   to="/customer/order"
                 >
@@ -41,18 +41,18 @@ function Customer({ user }) {
               <li className="my-3">
                 <NavLink
                   className={` my-3 ${
-                    pagename === "servicelist" ? "text-success" : "text-dark"
+                    pagename === "servicelist" ? "text-success" : "text-light"
                   }`}
                   to="/customer/servicelist"
                 >
                   {" "}
-                  <i class="fas fa-suitcase-rolling"></i> Service List
+                  <i className="fas fa-suitcase-rolling"></i> Service List
                 </NavLink>
               </li>
               <li className="my-3">
                 <NavLink
                   className={` my-3 ${
-                    pagename === "review" ? "text-success" : "text-dark"
+                    pagename === "review" ? "text-success" : "text-light"
                   } `}
                   to="/customer/review"
                 >

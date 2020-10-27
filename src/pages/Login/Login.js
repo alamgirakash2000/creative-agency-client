@@ -43,17 +43,9 @@ function Login({ user, setUser }) {
           image: newUser.photoURL,
           id: newUser.uid,
         });
-
-        Axios.get(`/api/admins/${newUser.email}`)
-          .then((response) => {
-            console.log(response.data);
-            if (response.data.length === 1) {
-              history.push("/admin/servicelist");
-            } else {
-              history.replace("/customer/order");
-            }
-          })
-          .catch((err) => alert(err.message));
+      })
+      .then(() => {
+        history.push(from);
       })
       .catch(function (error) {
         alert(error.message);

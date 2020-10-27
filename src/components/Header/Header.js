@@ -61,24 +61,16 @@ function Header({ user, setUser }) {
             <NavLink
               activeClassName="selected"
               className="nav-link ml-3"
-              to="/user"
+              to="/customer/servicelist"
             >
-              Our Portfolio
+              My Orders
             </NavLink>
             <NavLink
               activeClassName="selected"
               className="nav-link ml-3"
-              to="/admin"
+              to="/admin/servicelist"
             >
-              Our Team
-            </NavLink>
-
-            <NavLink
-              activeClassName="selected"
-              className="nav-link ml-3"
-              to="/t"
-            >
-              Contact us
+              Dashboard
             </NavLink>
 
             {user.email ? (

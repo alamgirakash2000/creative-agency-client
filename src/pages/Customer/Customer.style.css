@@ -1,5 +1,6 @@
 .customer__sidebar {
   padding: 4rem 2rem;
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
 
 .customer__sidebar ul {
