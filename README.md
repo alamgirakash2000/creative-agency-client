@@ -10,7 +10,7 @@
 
 <h2> Functionality </h2>
 <ul>
-   <li> <b> CURD operations by Monoose</b>
+   <li> <b> CURD operations by Mongoose</b>
   <li> <b>Render multiple pages through React Router</b>
   <li> <b> Store data globally by Context API </b>
   <li> <b> Firebase Authentication </b>
